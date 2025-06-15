@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes" />
+    <title>צור קשר</title>
+    <link rel="stylesheet" href="../css/global-style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <li><a href="../index/index.html">ראשי</a></li>
+        <li><a href="../painting/painting.html">גלריה</a></li>
+        <li><a href="../about/about.html">אודות</a></li>
+        <li><a href="../contact/contact.html">צור קשר</a></li>
+      </ul>
+    </nav>
+    <div class="contact-container">
+      <h1>צור קשר</h1>
+      <form
+        class="contact-form"
+        method="POST"
+        action=https://formspree.io/f/myzjykzp
+      >
+        <label for="name">שם מלא</label>
+        <input type="text" id="name" name="name" required autocomplete="name" />
+        <label for="email">אימייל</label>
+        <input
+          type="email"
+          id="email"
+          name="email"
+          required
+          autocomplete="email"
+        />
+        <label for="message">הודעה</label>
+        <textarea id="message" name="message" rows="4" required></textarea>
+        <div class="donate-box">
+          <label for="donate">תרומה:</label>
+          <input type="number" id="donate" name="donate" min="1"
+          placeholder="סכום בשקלים" />
+        </div>
+        <button type="submit">שלח</button>
+      </form>
+      <div class="contact-social">
+        <a href="https://wa.me/972546973203" target="_blank" title="וואטסאפ"
+          ><i class="fab fa-whatsapp"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/yuval.turdromi"
+          target="_blank"
+          title="פייסבוק"
+          ><i class="fab fa-facebook"></i
+        ></a>
+        <a
+          href="https://www.instagram.com/dromi7352/"
+          target="_blank"
+          title="אינסטגרם"
+          ><i class="fab fa-instagram"></i
+        ></a>
+      </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.ripples/0.5.3/jquery.ripples.min.js"></script>
+    <script src="../js/mainjs/main.js"></script>
+  </body>
+</html>

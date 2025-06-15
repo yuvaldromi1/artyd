@@ -1,0 +1,648 @@
+body {
+  width: 100vw;
+  min-width: 0;
+  min-height: 100vh;
+  max-width: 100vw;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.85);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 1000;
+  backdrop-filter: blur(10px);
+  transition: background 0.3s;
+}
+
+nav ul {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 12px 0;
+  gap: 48px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #5a3e36;
+  font-weight: 600;
+  font-size: 1.15em;
+  letter-spacing: 0.5px;
+  padding: 6px 18px;
+  border-radius: 8px;
+  transition: color 0.3s, background 0.3s;
+}
+
+nav ul li a:hover,
+nav ul li a.active {
+  color: #fff;
+  background: #5a3e36;
+}
+
+header {
+  text-align: center;
+  padding: 110px 24px 48px;
+}
+
+h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 3.2rem;
+  margin-bottom: 12px;
+  color: #5a3e36;
+  letter-spacing: 1px;
+}
+
+/* --- גלריה אופקית מודרנית (Carousel) --- */
+.gallery.carousel-gallery {
+  display: flex;
+  flex-direction: row;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  gap: 32px;
+  padding: 40px 0 24px 0;
+  margin: 80px auto 0 auto;
+  max-width: 98vw;
+  width: 100%;
+  box-sizing: border-box;
+}
+.gallery.carousel-gallery::-webkit-scrollbar {
+  height: 12px;
+  background: #fffbe6;
+  border-radius: 8px;
+}
+.gallery.carousel-gallery::-webkit-scrollbar-thumb {
+  background: #bfa16c88;
+  border-radius: 8px;
+}
+.gallery.carousel-gallery .card {
+  min-width: 220px;
+  max-width: 260px;
+  width: 90vw;
+  height: 320px;
+  flex: 0 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #fffbe6;
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  transition: transform 0.4s, box-shadow 0.4s;
+  margin: 0;
+  text-decoration: none;
+  color: inherit;
+}
+.gallery.carousel-gallery .card img {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  transition: filter 0.3s;
+}
+.gallery.carousel-gallery .card:hover {
+  transform: scale(1.06) translateY(-10px);
+  box-shadow: 0 16px 48px #bfa16c44, 0 2px #5a3e3622;
+  z-index: 2;
+}
+.gallery.carousel-gallery .card:hover img {
+  filter: brightness(1.08) saturate(1.1);
+}
+.gallery.carousel-gallery .caption {
+  padding: 14px 10px;
+  font-size: 1.08rem;
+  color: #5a3e36;
+  text-align: center;
+  background: none;
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+
+/* כפתורי גלילה */
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin: 0 0 18px 0;
+}
+.carousel-controls button {
+  font-size: 2rem;
+  padding: 8px 16px;
+  border: none;
+  background: #fffbe6;
+  color: #5a3e36;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.carousel-controls button:hover {
+  background: #bfa16c;
+  color: #fff;
+}
+
+@media (max-width: 600px) {
+  .gallery.carousel-gallery .card {
+    min-width: 70vw;
+    max-width: 90vw;
+    height: 220px;
+  }
+  .gallery.carousel-gallery .card img {
+    height: 110px;
+  }
+}
+
+/* הסתרת הגלריה המעגלית הישנה */
+.gallery.circle-gallery {
+  display: none !important;
+}
+.gallery-controls,
+.gallery-scrollbar {
+  display: none !important;
+}
+
+.gallery {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 36px;
+  padding: 40px 32px 32px 32px;
+  box-sizing: border-box;
+}
+
+.card {
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: 18px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  /* Only animate transform, box-shadow, filter for best browser compatibility */
+  transition: transform 0.7s cubic-bezier(0.22, 1.5, 0.36, 1), box-shadow 0.5s,
+    filter 0.5s;
+  width: 290px;
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
+  align-items: center;
+  margin: 0;
+  will-change: transform, box-shadow, filter;
+  z-index: 1;
+}
+
+.gallery .card:hover {
+  transform: translateY(-36px) scale(1.1) rotate(-3deg);
+  box-shadow: 0 40px 80px 0 #bfa16c77, 0 12px 36px #5a3e3666,
+    0 2px 12px #5a3e3622;
+  filter: brightness(1.1) saturate(1.15) drop-shadow(0 12px 32px #fffbe6);
+  z-index: 20;
+  cursor: pointer;
+}
+
+.card img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+  border-top-left-radius: 18px;
+  border-top-right-radius: 18px;
+  /* Remove transition: inherit, use only for transform, box-shadow, filter */
+  transition: transform 0.7s cubic-bezier(0.22, 1.5, 0.36, 1), box-shadow 0.5s,
+    filter 0.5s;
+  box-shadow: 0 2px 12px rgba(90, 62, 54, 0.1);
+  will-change: transform, box-shadow, filter;
+  z-index: 1;
+}
+
+.gallery .card:hover img {
+  transform: none;
+  box-shadow: 0 2px 12px rgba(90, 62, 54, 0.1);
+  filter: none;
+  z-index: 1;
+}
+
+caption {
+  padding: 18px 16px 16px;
+  font-size: 1.08rem;
+  color: #5a3e36;
+  opacity: 0;
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.about-container {
+  max-width: 720px;
+  margin: 130px auto 48px;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.92);
+  border-radius: 18px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+  padding: 40px 28px 36px;
+}
+
+.profile-pic {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 50%;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.13);
+  margin-bottom: 22px;
+  border: 4px solid #e6f0ff;
+}
+
+.bio-text {
+  font-family: "Caveat", "Pacifico", "Playfair Display", cursive, serif;
+  font-size: 1.25rem;
+  line-height: 2.1;
+  color: #2e4053;
+  background: none;
+  border: none;
+  box-shadow: none;
+  padding: 0 0 0 0;
+  margin: 32px auto 0 auto;
+  max-width: 650px;
+  text-align: center;
+}
+
+.hover-highlight {
+  display: inline-block;
+  transition: color 0.18s, filter 0.18s;
+  cursor: pointer;
+  color: #5a3e36;
+  font-family: inherit;
+  font-weight: 700;
+  font-style: italic;
+  letter-spacing: 0.5px;
+  will-change: transform, filter, text-shadow;
+}
+.hover-highlight:hover {
+  color: #bfa16c;
+  animation: popFloatFeather 1.5s cubic-bezier(0.22, 1.5, 0.36, 1) forwards;
+  filter: drop-shadow(0 6px 18px #f5e6c8) drop-shadow(0 1px 0 #fffbe6);
+  text-shadow: 0 4px 24px #f5e6c8, 0 1px 0 #fffbe6;
+  z-index: 2;
+}
+@keyframes popFloatFeather {
+  0% {
+    transform: scale(1) translateY(0) rotate(0deg);
+    filter: none;
+  }
+  30% {
+    transform: scale(1.25, 1.18) translateY(-10px) rotate(-3deg);
+    filter: drop-shadow(0 8px 24px #f5e6c8);
+  }
+  60% {
+    transform: scale(1.18, 1.12) translateY(-18px) rotate(4deg);
+    filter: drop-shadow(0 10px 28px #f5e6c8);
+  }
+  80% {
+    transform: scale(1.12, 1.08) translateY(-24px) rotate(-6deg);
+    filter: drop-shadow(0 12px 32px #f5e6c8);
+  }
+  100% {
+    transform: scale(1.08, 1.04) translateY(-28px) rotate(2deg);
+    filter: drop-shadow(0 14px 36px #f5e6c8);
+  }
+}
+
+.painting-display {
+  padding-top: 110px;
+  text-align: center;
+}
+
+.painting-display h1 {
+  font-size: 2.2rem;
+  margin-bottom: 32px;
+  color: #5a3e36;
+}
+
+.painting-display img {
+  width: 62%;
+  border-radius: 14px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+  max-width: 95%;
+  height: auto;
+  margin-bottom: 32px;
+}
+
+.painting-display #description {
+  max-width: 640px;
+  margin: 0 auto 44px;
+  font-size: 1.13rem;
+  line-height: 1.7;
+  padding: 0 22px;
+  color: #2e4053;
+  background: rgba(255, 255, 255, 0.85);
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+.art-frame {
+  border: 0;
+  border-radius: 32px 32px 48px 48px/40px 40px 60px 60px;
+  background: repeating-linear-gradient(
+    135deg,
+    #fdf6e3 0 12px,
+    #f5e6c8 12px 24px,
+    #e6f0ff 24px 36px,
+    #fdf6e3 36px 48px
+  );
+  box-shadow: 0 8px 32px rgba(191, 161, 108, 0.4);
+  padding: 0;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 800px;
+  position: relative;
+  z-index: 1;
+}
+
+.art-frame:before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: -8px;
+  right: -8px;
+  bottom: -8px;
+  background: linear-gradient(
+    135deg,
+    rgba(255, 251, 230, 0.7) 0%,
+    rgba(230, 240, 255, 0.7) 100%
+  );
+  border-radius: 32px 32px 48px 48px/40px 40px 60px 60px;
+  z-index: -1;
+}
+
+footer {
+  background: #2e4053;
+  color: #fff;
+  padding: 60px 20px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+footer h2 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.5rem;
+  margin: 0 0 20px 0;
+  position: relative;
+  display: inline-block;
+}
+
+footer h2:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 4px;
+  bottom: -8px;
+  left: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(191, 161, 108, 0.8) 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+}
+
+footer p {
+  font-size: 1.1rem;
+  margin: 0 0 12px 0;
+  line-height: 1.6;
+}
+
+footer a {
+  color: #bfa16c;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #fff;
+}
+
+footer .social-icons {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+
+footer .social-icons a {
+  color: #bfa16c;
+  font-size: 1.5rem;
+  transition: transform 0.3s;
+}
+
+footer .social-icons a:hover {
+  transform: translateY(-4px);
+  color: #fff;
+}
+
+.watercolor-button {
+  background: linear-gradient(90deg, #bfa16c 0%, #f5e6c8 100%);
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: 1.18rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #bfa16c44, 0 1px 0 #fffbe6;
+  padding: 12px 24px;
+  margin-top: 12px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  letter-spacing: 1px;
+}
+
+.watercolor-button:hover {
+  background: linear-gradient(90deg, #f5e6c8 0%, #bfa16c 100%);
+  color: #5a3e36;
+  box-shadow: 0 8px 32px #bfa16c66, 0 1px 0 #fffbe6;
+  transform: translateY(-3px) scale(1.04) rotate(-2deg);
+}
+
+/* --- Contact Page Impressionist Style --- */
+.contact-container {
+  max-width: 440px;
+  margin: 140px auto 48px auto;
+  background: linear-gradient(135deg, #fffbe6 0%, #e6f0ff 100%) padding-box,
+    repeating-linear-gradient(
+        120deg,
+        #f5e6c8 0 12px,
+        #e6f0ff 12px 24px,
+        #fdf6e3 24px 36px,
+        #f5e6c8 36px 48px
+      )
+      border-box;
+  border: 8px double #bfa16c;
+  border-radius: 36px 36px 60px 60px/40px 40px 80px 80px;
+  box-shadow: 0 12px 48px 0 #bfa16c44, 0 2px 12px #5a3e3622;
+  padding: 38px 32px 32px 32px;
+  position: relative;
+  z-index: 2;
+  overflow: hidden;
+}
+.contact-container h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 2.2rem;
+  color: #bfa16c;
+  margin-bottom: 24px;
+  letter-spacing: 1px;
+  text-shadow: 0 2px 16px #fffbe6, 0 1px 0 #e6f0ff;
+}
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  margin-bottom: 28px;
+}
+.contact-form label {
+  font-family: "Inter", serif;
+  color: #5a3e36;
+  font-size: 1.08rem;
+  margin-bottom: 2px;
+  text-align: right;
+}
+.contact-form input,
+.contact-form textarea {
+  border: none;
+  border-radius: 16px;
+  background: linear-gradient(100deg, #fffbe6 60%, #e6f0ff 100%);
+  box-shadow: 0 2px 12px #bfa16c22;
+  padding: 12px 16px;
+  font-size: 1.08rem;
+  color: #2e4053;
+  outline: none;
+  transition: box-shadow 0.3s, background 0.3s;
+  margin-bottom: 0;
+}
+.contact-form input:focus,
+.contact-form textarea:focus {
+  background: #fffbe6;
+  box-shadow: 0 0 0 3px #bfa16c55, 0 2px 12px #bfa16c22;
+}
+.contact-form textarea {
+  min-height: 80px;
+  resize: vertical;
+}
+.donate-box {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: rgba(255, 251, 230, 0.7);
+  border-radius: 12px;
+  padding: 6px 12px;
+  margin-bottom: 0;
+  font-size: 0.98rem;
+}
+.contact-form button[type="submit"] {
+  background: linear-gradient(90deg, #bfa16c 0%, #f5e6c8 100%);
+  color: #fff;
+  font-family: "Playfair Display", serif;
+  font-size: 1.18rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 18px;
+  box-shadow: 0 4px 18px #bfa16c44, 0 1px 0 #fffbe6;
+  padding: 12px 0;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.3s, box-shadow 0.3s, transform 0.2s;
+  letter-spacing: 1px;
+}
+.contact-form button[type="submit"]:hover {
+  background: linear-gradient(90deg, #f5e6c8 0%, #bfa16c 100%);
+  color: #5a3e36;
+  box-shadow: 0 8px 32px #bfa16c66, 0 1px 0 #fffbe6;
+  transform: translateY(-3px) scale(1.04) rotate(-2deg);
+}
+.contact-social {
+  display: flex;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 18px;
+}
+.contact-social a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 54px;
+  height: 54px;
+  border-radius: 50%;
+  box-shadow: 0 4px 18px #bfa16c44, 0 1px 0 #fffbe6;
+  font-size: 2.1rem;
+  color: #bfa16c;
+  transition: background 0.3s, color 0.3s, transform 0.2s, box-shadow 0.3s;
+  border: 2px solid #f5e6c8;
+  background: #fffbe6;
+  text-decoration: none;
+}
+.contact-social a[href*="wa.me"] i {
+  color: #25d366;
+}
+.contact-social a[href*="facebook"] i {
+  color: #1877f3;
+}
+.contact-social a[href*="instagram"] i {
+  color: #e4405f;
+}
+.contact-social a:hover {
+  background: linear-gradient(120deg, #bfa16c 60%, #f5e6c8 100%);
+  color: #fffbe6;
+  box-shadow: 0 8px 32px #bfa16c66, 0 1px 0 #fffbe6;
+  transform: scale(1.13) rotate(-6deg);
+}
+.contact-social a:hover i {
+  color: #fffbe6;
+}
+@media (max-width: 600px) {
+  .contact-container {
+    max-width: 98vw;
+    padding: 18px 4vw 18px 4vw;
+    border-radius: 24px 24px 40px 40px/24px 24px 48px 48px;
+  }
+  .contact-form input,
+  .contact-form textarea {
+    font-size: 1rem;
+    padding: 10px 8px;
+  }
+  .contact-social a {
+    width: 44px;
+    height: 44px;
+    font-size: 1.5rem;
+  }
+}
+
+.gallery-controls {
+  text-align: center;
+  margin-top: 16px;
+}
+.gallery-controls button {
+  font-size: 2rem;
+  padding: 8px 16px;
+  margin: 0 8px;
+  border: none;
+  background: #fffbe6;
+  color: #5a3e36;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.gallery-controls button:hover {
+  background: #bfa16c;
+  color: #fff;
+}
